@@ -36,3 +36,24 @@ public class TicTacToe {
 			System.out.print("Please try again");
 			userInput();
 		}
+		String temp1 = input[1];
+		int column = Integer.parseInt(temp);
+		column = column - 1;
+
+		if(filled(row, column)) {
+			if (try % 2 == 0) {
+				board[row][column]="X";
+			}
+			else {
+				board[row][column]="O";
+			}
+		}
+		else {
+			System.out.print("Please try again");
+			userInput();
+		}
+
+		try ++;
+
+	}
+
