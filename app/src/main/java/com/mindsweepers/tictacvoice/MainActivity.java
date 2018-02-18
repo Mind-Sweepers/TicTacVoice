@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 
 public class MainActivity extends AppCompatActivity {
 
+    private int tries;
     private Button playback_btn;
     private Button input_btn;
     private TextView textMessage;
@@ -25,12 +26,23 @@ public class MainActivity extends AppCompatActivity {
     private String userInput;
 
     private TextToSpeech toSpeech;
+    private TextToSpeech tts;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        tries = 0;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                tts.setLanguage(Locale.US);
+            }
+        } );
 
         textMessage = (TextView) findViewById(R.id.textMessage);
         toSpeech = new TextToSpeech(MainActivity.this, new TextToSpeech.OnInitListener() {
@@ -45,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void speakInstructions(View view){
+        tts.speak("Welcome to Tic Tac Voice. Game is starting. Player X please say a coordinate or a 3 by 3 grid. Letter then Number", TextToSpeech.QUEUE_FLUSH, null);
     }
 
     public void playbackOutput(View view){
@@ -75,6 +91,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void getSpeechInput(View view){
 
+        //TicTacToe.getInstance().setPiece("hi");
+        //Log.e("inside button",TicTacToe.getInstance().getBoard()[0][0]);
+
+
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
@@ -96,6 +116,32 @@ public class MainActivity extends AppCompatActivity {
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     textMessage.setText(result.get(0));
                     userInput = result.get(0);
+                    char row = userInput.charAt(0);
+                    int col = Character.getNumericValue(userInput.charAt(1));
+
+
+                    if(userInput.length()==2 && (row =='A' || row=='B' || row=='C') && col<4) {
+                        if(TicTacToe.getInstance().userInput(userInput, tries) ==1){
+                            tts.speak("X has won the game",TextToSpeech.QUEUE_FLUSH,null);
+                            TicTacToe.getInstance().resetBoard();
+                            tries = 0;
+                        }else if(TicTacToe.getInstance().userInput(userInput, tries) ==2){
+                            tts.speak("O has won the game",TextToSpeech.QUEUE_FLUSH,null);
+                            TicTacToe.getInstance().resetBoard();
+                            tries = 0;
+                        }
+                        tries +=1;
+                    }else {
+                        Toast.makeText(getApplicationContext(), "Please make sure you're input is in the form of letter then number", Toast.LENGTH_SHORT).show();
+                        tts.speak("Please make sure you're input is in the form of letter then number",TextToSpeech.QUEUE_FLUSH,null);
+
+                    }
+                }
+
+                if(tries > 8){
+                    tts.speak("Tied game",TextToSpeech.QUEUE_FLUSH,null);
+                    TicTacToe.getInstance().resetBoard();
+                    tries = 0;
                 }
                 Log.i("Hi","Test");
                 break;

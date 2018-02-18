@@ -29,8 +29,10 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_alignParentBottom="true"
-        android:text="Input"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:onClick="getSpeechInput"
+        android:text="Input"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="278dp" />
 
@@ -44,5 +46,15 @@
         android:onClick="playbackOutput"
         tools:layout_editor_absoluteX="284dp"
         tools:layout_editor_absoluteY="7dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:onClick="speakInstructions"
+        android:layout_below="@+id/playback_btn"
+        android:text="Help" />
 
 </RelativeLayout>
