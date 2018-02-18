@@ -97,8 +97,11 @@ public class MainActivity extends AppCompatActivity {
                     textMessage.setText(result.get(0));
                     userInput = result.get(0);
                 }
-
+                Log.i("Hi","Test");
                 break;
-        }
+            }
     }
 }
+
+
+//TEST COMMMIT!
