@@ -107,7 +107,7 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_below="@+id/button"
-        android:layout_marginLeft="222dp"
+        android:layout_marginLeft="212dp"
         android:layout_marginTop="63dp"
         app:srcCompat="@drawable/tic_tac_toe_blank" />
 
@@ -137,5 +137,88 @@
         android:layout_alignLeft="@+id/imageViewB3"
         android:layout_alignTop="@+id/imageViewC1"
         app:srcCompat="@drawable/tic_tac_toe_blank" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_above="@+id/imageViewA1"
+        android:layout_alignEnd="@+id/imageViewA1"
+        android:layout_alignLeft="@+id/imageViewA1"
+        android:layout_alignRight="@+id/imageViewA1"
+        android:layout_alignStart="@+id/imageViewA1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:text="1" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageViewA2"
+        android:layout_alignEnd="@+id/imageViewA2"
+        android:layout_alignLeft="@+id/imageViewA2"
+        android:layout_alignRight="@+id/imageViewA2"
+        android:layout_alignStart="@+id/imageViewA2"
+        android:layout_alignTop="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:text="2" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageViewA3"
+        android:layout_alignEnd="@+id/imageViewA3"
+        android:layout_alignLeft="@+id/imageViewA3"
+        android:layout_alignStart="@+id/imageViewA3"
+        android:layout_alignTop="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_vertical"
+        android:gravity="center"
+        android:text="3" />
+
+    <TextView
+        android:id="@+id/textViewaa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageViewB1"
+        android:layout_alignTop="@+id/imageViewB1"
+        android:layout_gravity="center_horizontal"
+        android:paddingRight ='10dp'
+        android:layout_toLeftOf="@+id/imageViewA1"
+        android:layout_toStartOf="@+id/imageViewA1"
+        android:gravity="center"
+        android:text="B" />
+
+    <TextView
+        android:id="@+id/textViewbb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageViewA1"
+        android:layout_alignTop="@+id/imageViewA1"
+        android:layout_gravity="center_horizontal"
+        android:layout_toLeftOf="@+id/imageViewA1"
+        android:layout_toStartOf="@+id/imageViewA1"
+        android:paddingRight ='10dp'
+        android:gravity="center"
+        android:text="A" />
+
+    <TextView
+        android:id="@+id/textViewcc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageViewC1"
+        android:layout_alignTop="@+id/imageViewC1"
+        android:layout_gravity="center_horizontal"
+        android:paddingRight ='10dp'
+        android:layout_toLeftOf="@+id/imageViewC1"
+        android:layout_toStartOf="@+id/imageViewC1"
+        android:gravity="center"
+        android:text="C" />
+
 
 </RelativeLayout>
