@@ -4,15 +4,14 @@ package com.mindsweepers.tictacvoice;
  * Created by viviandiec on 2018-02-18.
  */
 
-import android.speech.tts.TextToSpeech;
 import android.util.Log;
-
-import java.util.Locale;
+import java.util.ArrayList;
 
 public class TicTacToe {
-    TextToSpeech tts;
     String board[][];
     private static TicTacToe ticTacToe;
+    ArrayList <String> called = new ArrayList<>();
+
 
     public TicTacToe(){
         board = new String[3][3];
@@ -26,26 +25,19 @@ public class TicTacToe {
         return ticTacToe;
     }
 
-    public String[][] getBoard(){
-        return ticTacToe.board;
-    }
-
-    public void setPiece(String x) {
-        board[0][0]=x;
-
-    }
-
-//    public void init(){
-//        userInput();
+//    public String[][] getBoard(){
+//        return ticTacToe.board;
 //    }
+//
+//    public void setPiece(String x) {
+//        board[0][0]=x;
+//
+//    }
+
     public int userInput(String s, int tries) {
 
-//            String input;
-//            System.out.println("Enter a coordinate: ");
-//            Scanner scanner = new Scanner(System.in);
-//            input = scanner.nextLine(); //potentially fix
-
             String temp = Character.toString(s.charAt(0));
+            called.add(temp);
 
             Log.e("temp", temp);
             int result = 0;
@@ -69,6 +61,7 @@ public class TicTacToe {
 
             if (rowValid){
                 String temp1 = Character.toString(s.charAt(1));
+//                called.add(temp1);
 
                 Log.e("temp1", temp1);
 
@@ -130,9 +123,35 @@ public class TicTacToe {
         }
     }
 
-    public static void main(String[] args) {
-        new TicTacToe();
+    public boolean alreadyCalled(char r, int c) {
+
+        int row;
+
+        if (r=='A') {
+            row = 0;
+        }
+        else if (r=='B') {
+            row = 1;
+        }
+        else {
+            row = 2;
+        }
+
+        return board[(row)][c-1] != null;
+
+//        String row, col;
+//
+//        row = Character.toString(r);
+//        col = Integer.toString(c);
+//
+//        for (int i=0; i<18; i+=2) {
+//            if ((called.get(i).equals(row)) && (called.get(i+1).equals(col))) {
+//                return false;
+//            }
+//        }
+//        return true;
     }
+
 
     public void resetBoard(){
         board = null;
@@ -148,5 +167,8 @@ public class TicTacToe {
         }
     }
 
-}
+    public static void main(String[] args) {
+        new TicTacToe();
+    }
 
+}

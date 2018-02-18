@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
     private TextToSpeech toSpeech;
     private TextToSpeech tts;
 
+    private TicTacToe ticTacToe;
+
+    private ImageView[][] im;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +40,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        im = new ImageView[][] {{findViewById(R.id.imageViewA1), findViewById(R.id.imageViewA2), findViewById(R.id.imageViewA3)},
+                {findViewById(R.id.imageViewB1), findViewById(R.id.imageViewB2), findViewById(R.id.imageViewB3)},
+                {findViewById(R.id.imageViewC1), findViewById(R.id.imageViewC2), findViewById(R.id.imageViewC3)}
+        };
 
         tts = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
             @Override
@@ -53,10 +61,8 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "Feature not supported in your device", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
-
     }
 
     public void speakInstructions(View view){
@@ -116,25 +122,47 @@ public class MainActivity extends AppCompatActivity {
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     textMessage.setText(result.get(0));
                     userInput = result.get(0);
-                    char row = userInput.charAt(0);
-                    int col = Character.getNumericValue(userInput.charAt(1));
 
+                    char row = userInput.charAt(0);
+                    int r;
+                    int col = Character.getNumericValue(userInput.charAt(1));
+                    if (row=='A') {
+                        r = 0;
+                    }
+                    else if (row=='B') {
+                        r = 1;
+                    }
+                    else {
+                        r = 2;
+                    }
 
                     if(userInput.length()==2 && (row =='A' || row=='B' || row=='C') && col<4) {
+                        if (TicTacToe.getInstance().alreadyCalled(row,col)) {
+                            Toast.makeText(getApplicationContext(), "That location has already been entered. Please pick a different location.", Toast.LENGTH_SHORT).show();
+                            tts.speak("That location has already been entered. Please pick a different location.",TextToSpeech.QUEUE_FLUSH,null);
+                        }else {
+                            tries += 1;
+                            if (tries % 2 == 0) {
+                                im[r][col - 1].setImageResource(R.drawable.tic_tac_toe_x);
+                            } else {
+                                im[r][col - 1].setImageResource(R.drawable.tic_tac_toe_o);
+                            }
+                        }
                         if(TicTacToe.getInstance().userInput(userInput, tries) ==1){
-                            tts.speak("X has won the game",TextToSpeech.QUEUE_FLUSH,null);
+                            tts.speak("Player X has won the game",TextToSpeech.QUEUE_FLUSH,null);
                             TicTacToe.getInstance().resetBoard();
                             tries = 0;
                         }else if(TicTacToe.getInstance().userInput(userInput, tries) ==2){
-                            tts.speak("O has won the game",TextToSpeech.QUEUE_FLUSH,null);
+                            tts.speak("Player O has won the game",TextToSpeech.QUEUE_FLUSH,null);
                             TicTacToe.getInstance().resetBoard();
                             tries = 0;
                         }
-                        tries +=1;
-                    }else {
-                        Toast.makeText(getApplicationContext(), "Please make sure you're input is in the form of letter then number", Toast.LENGTH_SHORT).show();
-                        tts.speak("Please make sure you're input is in the form of letter then number",TextToSpeech.QUEUE_FLUSH,null);
 
+                    }
+
+                    else {
+                        Toast.makeText(getApplicationContext(), "Please make sure you're input is valid and is in the form of letter then number", Toast.LENGTH_SHORT).show();
+                        tts.speak("Please make sure your input is valid and is in the form of letter then number",TextToSpeech.QUEUE_FLUSH,null);
                     }
                 }
 
@@ -148,6 +176,3 @@ public class MainActivity extends AppCompatActivity {
             }
     }
 }
-
-
-//TEST COMMMIT!

@@ -57,4 +57,85 @@
         android:layout_below="@+id/playback_btn"
         android:text="Help" />
 
+    <ImageView
+        android:id="@+id/imageViewA1"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_below="@+id/button"
+        android:layout_alignLeft="@+id/imageViewB1"
+        android:layout_marginTop="22dp"
+        app:srcCompat="@drawable/tic_tac_toe_blank" />
+
+    <ImageView
+        android:id="@+id/imageViewA2"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_below="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp"
+        app:srcCompat="@drawable/tic_tac_toe_blank" />
+
+    <ImageView
+        android:id="@+id/imageViewA3"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_below="@+id/button"
+        android:layout_alignLeft="@+id/imageViewB3"
+        android:layout_marginTop="22dp"
+        app:srcCompat="@drawable/tic_tac_toe_blank" />
+
+    <ImageView
+        android:id="@+id/imageViewB1"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_below="@+id/button"
+        android:layout_marginLeft="128dp"
+        android:layout_marginTop="63dp"
+        app:srcCompat="@drawable/tic_tac_toe_blank" />
+
+    <ImageView
+        android:id="@+id/imageViewB2"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_below="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="63dp"
+        app:srcCompat="@drawable/tic_tac_toe_blank" />
+
+    <ImageView
+        android:id="@+id/imageViewB3"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_below="@+id/button"
+        android:layout_marginLeft="222dp"
+        android:layout_marginTop="63dp"
+        app:srcCompat="@drawable/tic_tac_toe_blank" />
+
+    <ImageView
+        android:id="@+id/imageViewC1"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_below="@+id/button"
+        android:layout_alignLeft="@+id/imageViewB1"
+        android:layout_marginTop="105dp"
+        app:srcCompat="@drawable/tic_tac_toe_blank" />
+
+    <ImageView
+        android:id="@+id/imageViewC2"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_below="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@+id/imageViewC1"
+        app:srcCompat="@drawable/tic_tac_toe_blank" />
+
+    <ImageView
+        android:id="@+id/imageViewC3"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_below="@+id/button"
+        android:layout_alignLeft="@+id/imageViewB3"
+        android:layout_alignTop="@+id/imageViewC1"
+        app:srcCompat="@drawable/tic_tac_toe_blank" />
+
 </RelativeLayout>
