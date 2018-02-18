@@ -17,7 +17,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginLeft="17dp"
         android:layout_marginStart="17dp"
-        android:text="Welcome to TicTacVoice"
+        android:text="Welcome to Tic Tac Voice"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
